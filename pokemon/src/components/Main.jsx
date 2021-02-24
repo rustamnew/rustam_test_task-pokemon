@@ -1,13 +1,13 @@
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import { Header } from "./Header";
 import { Info } from "./Info";
-import { MainList } from "./MainList";
+import { CardList } from "./CardList";
 import { SideList } from "./SideList";
 
 
 export const Main = () => {
     return <>
-        <div className="main">
+        <div className="wrapper">
             <Header/>
 
             <BrowserRouter>
@@ -15,7 +15,7 @@ export const Main = () => {
                     <Route exact path='/'>
                         <div className="lists">
                             <SideList/>
-                            <MainList/>
+                            <CardList/>
                         </div>
                     </Route>
 

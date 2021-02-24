@@ -2,6 +2,10 @@ export const SideList = () => {
     let limit = 40
     let offset = 0
 
+    if (window.innerWidth <= 425) {
+        limit = 20
+    }
+
     const getPokemonSideInfo = async () => {
         await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`).then((res) => res.json().then((data) => {
             let results = data.results
@@ -18,6 +22,10 @@ export const SideList = () => {
                 
                 link.innerHTML = results[i].name
 
+                let number = document.createElement('div')
+                number.innerHTML = 'ID: ' + id + ' '
+
+                item.appendChild(number)
                 item.appendChild(link)
                 sideList.appendChild(item)
             }
@@ -25,9 +33,9 @@ export const SideList = () => {
             let button = document.createElement('button')
             button.innerHTML = 'load more'
             button.classList.add('sideListButton')
-            button.addEventListener('click', (e) => {
+            button.addEventListener('click', async () => {
                 offset += limit
-                getPokemonSideInfo()
+                await getPokemonSideInfo()
                 let button = document.querySelector('.sideListButton')
                 if (button) {
                     button.remove()

@@ -27,10 +27,12 @@ ul, li {
 
 .headerNav {
   display: flex;
+  align-items: center;
 }
 
 .headerButton {
   margin-right: 2rem;
+  text-align: center;
 }
 .headerButton:hover {
   text-decoration: underline;
@@ -39,29 +41,53 @@ ul, li {
   margin-right: 0;
 }
 
-.main {
+.wrapper {
   display: flex;
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
   background-color: #fff2dd;
 }
+@media (max-width: 900px) {
+  .wrapper {
+    height: unset;
+    overflow: unset;
+  }
+}
 
 .lists {
   display: flex;
-  height: 93%;
+  height: 95%;
+}
+@media (max-width: 900px) {
+  .lists {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
 }
 
 .sideList {
   width: 17%;
   min-width: 12.5rem;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   overflow-y: scroll;
   background-color: #fff;
   direction: rtl;
+  padding: 0.5rem;
+  padding-bottom: 4rem;
+}
+@media (max-width: 900px) {
+  .sideList {
+    overflow-y: unset;
+  }
+}
+@media (max-width: 425px) {
+  .sideList {
+    padding-bottom: 1rem;
+  }
 }
 
 .sideListItem {
@@ -70,28 +96,64 @@ ul, li {
   text-align: center;
   border-bottom: 1px solid #c2c2c2;
   padding: 0.3rem 0;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
 }
 .sideListItem:hover {
   text-decoration: underline;
   background-color: #f1f1f1;
 }
 
-.mainListWrapper {
-  display: flex;
-  flex-direction: column;
-  width: -webkit-fill-available;
+.sideListButton {
+  margin: 1rem;
+  background-color: #e4bd8b;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.sideListButton:focus {
+  outline: none;
+}
+.sideListButton:hover {
+  color: #7c6115;
 }
 
-.mainList {
+.cardListWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: -webkit-fill-available;
+  padding: 1rem 0 2rem;
+}
+@media (max-width: 900px) {
+  .cardListWrapper {
+    justify-content: flex-start;
+  }
+}
+
+.cardList {
   display: grid;
-  grid-template-columns: repeat(9, 0fr);
+  grid-template-columns: repeat(5, 0fr);
   grid-template-rows: repeat(6, -webkit-min-content);
   grid-template-rows: repeat(6, min-content);
+  height: 100%;
   justify-content: center;
   padding-top: 1rem;
 }
+@media (max-width: 900px) {
+  .cardList {
+    height: 90%;
+    padding: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
 
-.mainListButtons {
+.cardListButtons {
   display: flex;
   justify-content: center;
 }
@@ -101,6 +163,7 @@ ul, li {
   margin-right: 30px;
   background: none;
   border: none;
+  margin-top: -0.5rem;
   -webkit-user-select: none;
   user-select: none;
 }
@@ -114,9 +177,17 @@ ul, li {
 .button:focus {
   outline: none;
 }
+.button:disabled {
+  pointer-events: none;
+}
 
 .cardsItem {
   margin: 0.6rem;
+}
+@media (max-width: 425px) {
+  .cardsItem {
+    margin: 0.2rem;
+  }
 }
 
 .card {
@@ -202,19 +273,4 @@ ul, li {
 .statsRow {
   width: 100%;
   text-align: justify;
-}
-
-.sideListButton {
-  margin: 1rem;
-  background-color: #e4bd8b;
-  border: none;
-  padding: 0.5rem;
-  border-radius: 1rem;
-  cursor: pointer;
-}
-.sideListButton:focus {
-  outline: none;
-}
-.sideListButton:hover {
-  color: #7c6115;
 }
