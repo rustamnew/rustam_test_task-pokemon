@@ -41,6 +41,12 @@ ul, li {
     padding: 1.2% 15%;
     background-color: #141414;
     color: #fff;
+
+    @include phones-l {
+        padding: 1rem 0.2rem;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .headerNav {
@@ -229,26 +235,18 @@ ul, li {
     text-transform: capitalize;
 }
 
-/* width */
 ::-webkit-scrollbar {
     width: 0.7rem
 }
-  
-  /* Track */
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
-  
-  /* Handle */
 ::-webkit-scrollbar-thumb {
     background: #888;
 }
-  
-  /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
-
 :disabled {
     pointer-events: none;
 }
@@ -260,19 +258,30 @@ ul, li {
     font-size: 1.5rem;
     width: -webkit-fill-available;
     height: -webkit-fill-available;
+
+    @include phones-l {
+        font-size: 1.2rem;
+    }
+    @include phones-s {
+        font-size: 1rem;
+    }
     
     &-image {
         display: flex;
         justify-content: center;
-    }
-    &-image img {
-        
-    }
 
+        @include phones-s {
+            width: 100%;
+        }
+    }
     &-main{
         display: flex;
         padding: 1rem;
         text-transform: capitalize;
+        @include phones-s {
+            flex: 1;
+            padding: 0.5rem;
+        }
     }
     &-stats{
         display: flex;
@@ -280,21 +289,42 @@ ul, li {
         flex-direction: column;
         padding: 1rem;
         text-transform: capitalize;
+        @include phones-s {
+            flex: 1;
+            padding: 0.5rem;
+        }
     }
     &-abilities{
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+
+        @include phones-s {
+            padding: 1rem;
+            justify-content: flex-start;
+        }
     }
 }
 
 .infoContent {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     background-color: #fffcf8;
     padding: 1.5rem;
     border-radius: 0.5rem;
+
+    @include tablets {
+        padding: 0.5rem;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+    }
+
+    @include phones-s {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
 }
 
 .abilities {

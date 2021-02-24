@@ -24,6 +24,13 @@ ul, li {
   background-color: #141414;
   color: #fff;
 }
+@media (max-width: 425px) {
+  .header {
+    padding: 1rem 0.2rem;
+    justify-content: center;
+    align-items: center;
+  }
+}
 
 .headerNav {
   display: flex;
@@ -203,22 +210,18 @@ ul, li {
   text-transform: capitalize;
 }
 
-/* width */
 ::-webkit-scrollbar {
   width: 0.7rem;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #888;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
@@ -235,14 +238,35 @@ ul, li {
   width: -webkit-fill-available;
   height: -webkit-fill-available;
 }
+@media (max-width: 425px) {
+  .info {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 320px) {
+  .info {
+    font-size: 1rem;
+  }
+}
 .info-image {
   display: flex;
   justify-content: center;
+}
+@media (max-width: 320px) {
+  .info-image {
+    width: 100%;
+  }
 }
 .info-main {
   display: flex;
   padding: 1rem;
   text-transform: capitalize;
+}
+@media (max-width: 320px) {
+  .info-main {
+    flex: 1;
+    padding: 0.5rem;
+  }
 }
 .info-stats {
   display: flex;
@@ -251,19 +275,45 @@ ul, li {
   padding: 1rem;
   text-transform: capitalize;
 }
+@media (max-width: 320px) {
+  .info-stats {
+    flex: 1;
+    padding: 0.5rem;
+  }
+}
 .info-abilities {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
+@media (max-width: 320px) {
+  .info-abilities {
+    padding: 1rem;
+    justify-content: flex-start;
+  }
+}
 
 .infoContent {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   background-color: #fffcf8;
   padding: 1.5rem;
   border-radius: 0.5rem;
+}
+@media (max-width: 900px) {
+  .infoContent {
+    padding: 0.5rem;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+  }
+}
+@media (max-width: 320px) {
+  .infoContent {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
 .abilities {
