@@ -61,7 +61,7 @@ export const CardList = () => {
         }))
     }
     
-    const buildCard = async (name, image, id) => {
+    const buildCard = (name, image, id) => {
         let list = document.querySelector('.cardList')
     
         let card = document.createElement('li')
@@ -79,7 +79,7 @@ export const CardList = () => {
         isLoading = false
     }
 
-    const listNav = async (e) => {
+    const listNav = (e) => {
         if (e.id === 'right' && !isLoading) {
             page++
             offset += limit
