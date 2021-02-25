@@ -6,18 +6,16 @@ export const CardList = () => {
     let viewportWidth = window.innerWidth
     let viewportHeight = window.innerHeight
 
-    console.log(viewportWidth + ' ' +viewportHeight)
-
     if (viewportWidth <= 1024) {
         limit = 20
     }
     if (viewportWidth <= 900) {
         limit = 16
     }
-    if (viewportWidth <= 768 || viewportHeight <= 1024) {
+    if (viewportWidth <= 768 || viewportHeight <= 700) {
         limit = 15
     }
-    if (viewportWidth <= 425 && viewportHeight <= 900) {
+    if (viewportWidth <= 425 && viewportHeight <= 700) {
         limit = 9
     }
     if (viewportWidth <= 358) {
@@ -32,9 +30,12 @@ export const CardList = () => {
     if (viewportWidth < 320) {
         limit = 4
     }
-    
-    const buildCards = async () => {
+
+    const getData = () => {
         isLoading = true
+
+        let list = document.querySelector('.cardList')
+        list.innerHTML= ''
 
         let arrowLeft = document.querySelector('#left')
         if (page > 1) {
@@ -43,33 +44,38 @@ export const CardList = () => {
             arrowLeft.disabled = true
         }
         
-        let list = document.querySelector('.cardList')
-        list.innerHTML= ''
-
-        for (let i = offset; i < offset + limit; i++) {
-            let id = i + 1
-            await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) => res.json().then(async (data) => {
+        fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`).then((res) => res.json().then((data) => {
+            for (let i = 0; i < data.results.length; i++) {
+                let id = offset + i + 1
+                
                 let name = document.createElement('div')
                 name.classList.add('cardName')
-                name.innerHTML = `${data.name}`
+                name.innerHTML = data.results[i].name
 
                 let image = new Image()
                 image.classList.add('cardImage')
                 image.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
-        
-                let card = document.createElement('li')
-                card.classList.add('cardsItem')
 
-                let cardLink = document.createElement('a')
-                cardLink.classList.add('card')
-                cardLink.setAttribute('href', `pokemon/${id}`)
+                buildCard(name, image, id)
+            }
+        }))
+    }
+    
+    const buildCard = async (name, image, id) => {
+        let list = document.querySelector('.cardList')
+    
+        let card = document.createElement('li')
+        card.classList.add('cardsItem')
 
-                cardLink.appendChild(image)
-                cardLink.appendChild(name)
-                card.appendChild(cardLink)
-                list.appendChild(card)
-            }))
-        }
+        let cardLink = document.createElement('a')
+        cardLink.classList.add('card')
+        cardLink.setAttribute('href', `pokemon/${id}`)
+
+        cardLink.appendChild(image)
+        cardLink.appendChild(name)
+        card.appendChild(cardLink)
+        list.appendChild(card)
+
         isLoading = false
     }
 
@@ -77,17 +83,17 @@ export const CardList = () => {
         if (e.id === 'right' && !isLoading) {
             page++
             offset += limit
-            buildCards()
+            getData()
 
         } else if (e.id === 'left' && !isLoading) {
             page--
             offset -= limit
-            buildCards()
+            getData()
         }
     }
 
     document.body.onload = () => {
-        buildCards()
+        getData()
     }
     
     return <>
@@ -98,6 +104,5 @@ export const CardList = () => {
                 <button onClick={(e) => listNav(e.currentTarget)} className="button right" id='right'>&#8594;</button>
             </div>
         </div>
-        
     </>
 }

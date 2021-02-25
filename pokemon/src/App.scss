@@ -280,7 +280,7 @@ ul, li {
         text-transform: capitalize;
         @include phones-s {
             flex: 1;
-            padding: 0.5rem;
+            padding: 0;
         }
     }
     &-stats{
@@ -291,7 +291,7 @@ ul, li {
         text-transform: capitalize;
         @include phones-s {
             flex: 1;
-            padding: 0.5rem;
+            padding: 0;
         }
     }
     &-abilities{
@@ -301,8 +301,8 @@ ul, li {
         flex-direction: column;
 
         @include phones-s {
-            padding: 1rem;
-            justify-content: flex-start;
+            padding: 1rem 0 0;
+            width: 100%;
         }
     }
 }

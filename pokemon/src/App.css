@@ -265,7 +265,7 @@ ul, li {
 @media (max-width: 320px) {
   .info-main {
     flex: 1;
-    padding: 0.5rem;
+    padding: 0;
   }
 }
 .info-stats {
@@ -278,7 +278,7 @@ ul, li {
 @media (max-width: 320px) {
   .info-stats {
     flex: 1;
-    padding: 0.5rem;
+    padding: 0;
   }
 }
 .info-abilities {
@@ -289,8 +289,8 @@ ul, li {
 }
 @media (max-width: 320px) {
   .info-abilities {
-    padding: 1rem;
-    justify-content: flex-start;
+    padding: 1rem 0 0;
+    width: 100%;
   }
 }
 
