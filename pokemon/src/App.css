@@ -112,6 +112,13 @@ ul, li {
   background-color: #f1f1f1;
 }
 
+.sideListLink {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
 .sideListButton {
   margin: 1rem;
   background-color: #e4bd8b;

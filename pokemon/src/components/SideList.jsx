@@ -18,14 +18,19 @@ export const SideList = () => {
                 let link = document.createElement('a')
                 let href = results[i].url.split('/')
                 let id = href[6]
-                link.setAttribute('href', `pokemon/${id}`)
-                
-                link.innerHTML = results[i].name
 
                 let number = document.createElement('div')
                 number.innerHTML = 'ID: ' + id + ' '
 
-                item.appendChild(number)
+                let name = document.createElement('div')
+                name.innerHTML = results[i].name
+                
+                link.setAttribute('href', `pokemon/${id}`)
+                link.classList.add('sideListLink')
+
+                link.appendChild(number)
+                link.appendChild(name)
+
                 item.appendChild(link)
                 sideList.appendChild(item)
             }
