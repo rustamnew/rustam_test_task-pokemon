@@ -1,5 +1,4 @@
 export const Info = () => {
-    //ПОЛУЧАТЬ ДАННЫЕ С АДРЕСНОЙ СТРОКИ И ЗАПРАШИВАТЬ ИНФУ ПО ID ПОКЕМОНА
 
     let getPokemonData = async (id = 1) => {
         await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) => res.json().then(async (data) => {
@@ -15,11 +14,7 @@ export const Info = () => {
         }))
     }
 
-    
-
     let buildInfo = (img, name, id, height, weight, abilities, stats) => {
-        console.log(abilities)
-        console.log(stats)
         
         let imgWrap = document.querySelector('.info-image')
         let charsWrap = document.querySelector('.infoChar')
@@ -40,22 +35,18 @@ export const Info = () => {
 
         let weightElem = document.createElement('li')
         weightElem.innerHTML = 'Weight: ' + weight/10 + 'kg'
-
         
-
-        
-        let abilityParent = document.querySelector('.info-abilities')
         let abilityLabel = document.createElement('div')
         abilityLabel.innerHTML = 'Abilities:'
+
+        let abilityParent = document.querySelector('.info-abilities')
         abilityParent.insertBefore(abilityLabel, abilitiesWrap)
 
         for (let i = 0; i < abilities.length; i++) {
             let number = i + 1
-            
             let abilitiesElem = document.createElement('li')
             abilitiesElem.innerHTML = number + ') ' + abilities[i].ability.name
             abilitiesWrap.appendChild(abilitiesElem)
-
         }
     
         for (let i = 0; i < stats.length; i++) {
@@ -65,14 +56,11 @@ export const Info = () => {
             statsWrap.appendChild(statsElem)
         }
         
-
         imgWrap.appendChild(image)
         charsWrap.appendChild(nameElem)
         charsWrap.appendChild(idElem)
         charsWrap.appendChild(heightElem)
-        charsWrap.appendChild(weightElem)
-        
-        
+        charsWrap.appendChild(weightElem) 
     }
 
     let url = window.location.href
